@@ -1,0 +1,123 @@
+<!doctype html>
+<html class="no-js" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" style="background: #fff">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>方圆实验室V版</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="方圆实验室V版"/>
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileColor" content="#fff">
+    <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Amaze UI CSS -->
+    <link rel="stylesheet" href="https://s2.pstatp.com/cdn/expire-1-M/amazeui/2.7.2/css/amazeui.min.css">
+    <!-- mui -->
+    <link rel="stylesheet" href="https://s1.pstatp.com/cdn/expire-1-M/mui/3.4.0/css/mui.min.css">
+    <script src="https://s1.pstatp.com/cdn/expire-1-M/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://s0.pstatp.com/cdn/expire-1-M/mui/3.4.0/js/mui.min.js"></script>
+    <style>
+        .am-img-responsive{height: 32px;}
+        .mui-input-row{height: 40px;}
+        #search_text{height: 40px;}
+    </style>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+        $(document).ready(function(){
+            $(window).resize(function(){
+                $('#main').css({
+                    position:'absolute',
+                    left: ($(window).width() - $('#main').outerWidth())/2,
+                    top: ($(window).height() - $('#main').outerHeight())/2-60
+                });
+            });
+            $(window).resize();
+        });
+    </script>
+</head>
+<body style="background: #fff">
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=27c6daeda6b2bd6194b074909c398de32404e9ce65955e5e83d027301a942f99"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="加入群聊" title="加入群聊"></a>
+<div class="am-panel am-u-sm-12 am-u-sm-centered am-u-lg-8" id="main">
+        <p id="keyWord" style="display: none;">{{.KeyWord}}</p>
+        <div class="am-g" style="margin-top: 30px;margin-bottom: 50px">
+            <form method="post" action="http://www.bdysou.com/search/search.php" id="fm" style="display:none">
+                <input type="text" id="bdyKey" name="keyboard">
+            </form>
+            <div class="am-input-group am-input-group-secondary" id="search_group" style="margin-left: 10px;margin-right: 10px;margin-top:20px;">
+                <div class="mui-input-row">
+                    <input type="text" class="am-form-field am-round mui-input-clear" id="search_text" placeholder="方圆实验室V版，搜你想要的" style="border-right-style:none;"></div>
+                <span class="am-input-group-btn" style="border-style:none">
+                        <button class="am-btn" id="search_choose" type="button" style="height: 40px;border-left-style:none;border-right-style:none;" onclick="choose()">
+                        <span class="am-icon-caret-down"></span></button>
+                        <button class="am-btn am-round" id="search_go" type="button" style="height: 40px;" onclick="a()">
+                        <span class="am-icon-search"></span></button>
+                    </span>
+            </div>
+            <div id="popover" class="mui-popover" style="margin-top: 10px;">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell"><a onclick="searchClick('88')" href="javascript:void(0);">88影视</a></li>
+                    <li class="mui-table-view-cell"><a onclick="searchClick('bt')" href="javascript:void(0);">BT骡子</a></li>
+                    <li class="mui-table-view-cell"><a onclick="searchClick('owl')" href="javascript:void(0);">小说搜索</a></li>
+                    <li class="mui-table-view-cell"><a onclick="searchClick('bd')" href="javascript:void(0);">百度云搜</a></li>
+                    <li class="mui-table-view-cell"><a onclick="searchClick('fk')" href="javascript:void(0);">疯狂影视</a></li>
+                    <li class="mui-table-view-cell"><a onclick="searchClick('mu')" href="javascript:void(0);">麦葱音乐</a></li>
+                    <li class="mui-table-view-cell"><a onclick="searchClick('fy')" href="javascript:void(0);">方圆影视</a></li>
+                </ul>
+            </div>
+            <div class="suggesst-words" style="display: none;margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+                <ul class="am-list am-list-border am-list-static"></ul>
+            </div>
+            <div class="am-g" style="margin-top: 20px;;margin-left: 10px;margin-right: 10px;" id="moreSearch">
+                <div class="am-u-sm-2">
+                    <img src="/static/img/douban.png" class="am-img-responsive" alt="db"/>
+                </div>
+                <div class="am-u-sm-2">
+                    <img src="/static/img/zhihu.png" class="am-img-responsive" alt="zh"/>
+                </div>
+                <div class="am-u-sm-2">
+                    <img src="/static/img/sina.png" class="am-img-responsive" alt="sina"/>
+                </div>
+                <div class="am-u-sm-2">
+                    <img src="/static/img/youku.png" class="am-img-responsive" alt="yk"/>
+                </div>
+                <div class="am-u-sm-2">
+                    <img src="/static/img/weixin.png" class="am-img-responsive" alt="wx"/>
+                </div>
+                <div class="am-u-sm-2">
+                    <img src="/static/img/baidu.png" class="am-img-responsive" alt="bj"/>
+                </div>
+            </div>
+        </div>
+		<div style="margin-top: 20px;margin-left: 10px;margin-right: 10px;border: none">
+            <div data-am-widget="tabs" class="am-tabs am-tabs-d2" id="search_tab" style="display: none;">
+                <ul class="am-tabs-nav am-cf">
+                    <li class="am-active"><a onclick="searchTab('zuida')" href="javascript:void(0);">接口一</a></li>
+                    <li class=""><a onclick="searchTab('88')" href="javascript:void(0);">接口二</a></li>
+                </ul>
+            </div>
+            <ul class="mui-table-view" id="fy-data"></ul>
+        </div>
+        <div id="progressbar" style="margin-bottom: 20px;"></div>
+</div>
+<!--[if lt IE 9]>
+<script src="https://s1.pstatp.com/cdn/expire-1-M/modernizr/2010.07.06dev/modernizr.min.js"></script>
+<script src="https://s1.pstatp.com/cdn/expire-1-M/respond.js/1.4.2/respond.min.js"></script>
+<script src="//cdn.amazeui.org/amazeui/2.1.0/js/amazeui.legacy.min.js"></script>
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="https://s1.pstatp.com/cdn/expire-1-M/amazeui/2.7.2/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<script src="/static/js/searchResult.js"></script>
+<script src="/static/js/suggest.js"></script>
+</body>
+</html>
