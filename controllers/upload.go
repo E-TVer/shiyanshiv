@@ -18,7 +18,7 @@ func (c *UploadController)Get()  {
 	c.TplName="upload.tpl"
 }
 func (c *UploadController) Post() {
-	if c.GetString("password")!="admin"{
+	if c.GetString("password")!="fysys_top_admin"{
 		c.Ctx.WriteString("error password!")
 		return
 	}

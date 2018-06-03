@@ -82,7 +82,7 @@ func GetVideoFromEight(url string) (videoes []Video) {
 }
 func getSourcesFromUrl(sourceUrl string) Source {
 	go func() {
-		util.Info("开始从网络获取网页内容...")
+		//util.Info("开始从网络获取网页内容...")
 		doc,err:=goquery.NewDocument(sourceUrl)
 		if err!=nil{
 			util.Info("出现错误："+err.Error())
@@ -90,7 +90,7 @@ func getSourcesFromUrl(sourceUrl string) Source {
 		}else {
 			doc.Find("script").EachWithBreak(func(i int, selection *goquery.Selection) bool {
 				if strings.HasPrefix(selection.Text(),"var mac_flag"){
-					util.Info("已经获取到关键信息")
+					//util.Info("已经获取到关键信息")
 					getPlayUrl(selection.Text())
 					return false
 				}
@@ -102,7 +102,7 @@ func getSourcesFromUrl(sourceUrl string) Source {
 	return playSource
 }
 func getPlayUrl(str string) {
-	util.Info("正在解析网页内容...")
+	//util.Info("正在解析网页内容...")
 	vm := otto.New()
 	vm.Run(str)
 	playerDesc :=PlayerDesc{}
@@ -153,6 +153,6 @@ func getPlayUrl(str string) {
 		sources.Players=append(sources.Players,player)
 	}
 	playSource=sources
-	util.Info("已经解析完所有链接")
+	//util.Info("已经解析完所有链接")
 	notifyMessage<-1
 }
