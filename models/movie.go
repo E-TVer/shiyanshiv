@@ -84,3 +84,19 @@ func GetUpdate() (u UpdateDetail) {
 	}
 	return
 }
+func GetHot() (u interface{}) {
+	resp,err:=http.Get("https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=0")
+	if err!=nil{
+		return
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return
+	}
+	err=json.Unmarshal(body,&u)
+	if err!=nil{
+		return
+	}
+	return
+}

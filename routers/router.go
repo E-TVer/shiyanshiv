@@ -13,6 +13,7 @@ func init() {
 	ns:=beego.NewNamespace("/movie",
 		beego.NSRouter("/",&controllers.MovieController{},"*:GetHtml"),
 		beego.NSRouter("/cc",&controllers.MovieController{},"*:CC"),
+		beego.NSRouter("/hot",&controllers.MovieController{},"*:GetHot"),
 		beego.NSRouter("/sou",&controllers.MovieController{},"*:Search"),
 		beego.NSRouter("/video",&controllers.MovieController{},"*:Video"),
 		beego.NSRouter("/player",&controllers.MovieController{},"*:Player"))

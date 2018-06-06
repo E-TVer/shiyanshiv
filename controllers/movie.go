@@ -13,7 +13,7 @@ var searchResults = make(chan []models.Movie,2)
 
 func (c *MovieController)GetHtml()  {
 	c.Data["KeyWord"]=c.GetString("wd")
-	c.TplName="searchResult.html"
+	c.TplName="searchResult_v2.html"
 }
 func (c *MovieController)Player()  {
 	c.Data["MovieUrl"]=c.GetString("url")
@@ -68,5 +68,9 @@ func (c *MovieController)CC()  {
 		updateMessage.NeedUpdate=true
 	}
 	c.Data["json"]=updateMessage
+	c.ServeJSON()
+}
+func(c *MovieController) GetHot()  {
+	c.Data["json"]=models.GetHot()
 	c.ServeJSON()
 }
