@@ -6,6 +6,12 @@
 }
 #search_text{
     height: 40px;
+    outline: none;
+    border-color: #cccccc;
+}
+.fy-background{
+    background: #f5f5f5;
+    border-color: #f5f5f5;
 }
 .am-topbar-inverse{
     background-color: #f5f5f5;

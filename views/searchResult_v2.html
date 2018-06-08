@@ -38,9 +38,12 @@
         <header class="am-topbar am-topbar-inverse">
             <h1 class="am-topbar-brand">
                 <a href="/" style="color: lightcoral">方圆实验室V版</a>
+            </h1>
+            <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-default am-show-sm-only fy-background" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航</span> <span class="am-icon-bars"></span></button>
+            <div class="am-topbar-brand am-collapse am-topbar-collapse" id="doc-topbar-collapse">
                 <span class="am-badge am-radius" onclick="getSource()">获取源码</span>
                 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=27c6daeda6b2bd6194b074909c398de32404e9ce65955e5e83d027301a942f99"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="加入群聊" title="加入群聊"></a>
-            </h1>
+            </div>
         </header>
         <div class="am-g" id="search_am">
             <form method="post" action="http://www.bdysou.com/search/search.php" id="fm" style="display:none">

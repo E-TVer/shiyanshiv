@@ -6,7 +6,7 @@ function addHtml(data){
     $("#fy-data").append(html2);
 }
 function addHtmlFromHot(count,idx,data){
-    var all1="<div class=\"am-u-sm-2";
+    var all1="<div class=\"am-u-sm-"+12/(theType*3);
     var all2="\" onclick=\"urlClickFromHot("+"'"+data.title+"')\">" +
         "    <div class=\"am-thumbnail\">" +
         "      <img src=\""+data.cover+"\" alt=\"\"/>" +
@@ -17,7 +17,7 @@ function addHtmlFromHot(count,idx,data){
     if(count===idx+1){
         all1=all1+" am-u-end";
     }
-    if(idx%6===0){
+    if(idx%(theType*3)===0){
         console.log(idx);
         var idd="<div class=\"am-g\" id=\"fy-";
         var html3=">" +all1+all2+
@@ -25,7 +25,7 @@ function addHtmlFromHot(count,idx,data){
         html3=idd+idx+"\""+html3;
         $("#dy-list-hot").append(html3);
     }else {
-        var lastId="fy-"+(idx-idx%6).toString();
+        var lastId="fy-"+(idx-idx%(theType*3)).toString();
         console.log(lastId);
         $("#"+lastId).append(all1+all2);
     }
@@ -217,6 +217,7 @@ var keyWord=$("#keyWord").text();
 var hasWhich="111";
 var source="zuida";
 var theType=(mui.os.ios||mui.os.android||mui.os.wechat)?1:2;
+if(theType===1)$(".am-topbar-inverse").css("margin-top","10px");
 mui('#quickSearch').on('tap','a',function(){
     this.click();
 });
